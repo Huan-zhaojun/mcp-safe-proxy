@@ -51,12 +51,14 @@ flowchart LR
 
 ## 快速开始
 
-### 本地构建
+### 安装
 
 ```bash
-cd mcp-safe-proxy
-npm install
-npm run build
+# 方式一：全局安装（推荐，启动更快）
+npm install -g mcp-safe-proxy
+
+# 方式二：npx 按需调用（无需预装）
+npx -y mcp-safe-proxy -- <command> [args...]
 ```
 
 ### Codex 配置
@@ -72,25 +74,45 @@ command = "npx"
 args = ["@playwright/mcp@latest"]
 ```
 
-**代理配置**（不弹审批）：
+**代理配置 — npx 方式**（不弹审批）：
 
 ```toml
 [mcp_servers.playwright]
 type = "stdio"
-command = "node"
-args = ["<PROJECT_ROOT>/dist/index.js", "--", "npx", "@playwright/mcp@latest"]
+command = "npx"
+args = ["-y", "mcp-safe-proxy", "--", "npx", "@playwright/mcp@latest"]
 ```
 
-> 将 `<PROJECT_ROOT>` 替换为项目绝对路径。Windows 下路径必须使用正斜杠 `/`，可用 `cygpath -m $(pwd)` 获取。
+**代理配置 — 全局安装方式**：
+
+```toml
+[mcp_servers.playwright]
+type = "stdio"
+command = "mcp-safe-proxy"
+args = ["--", "npx", "@playwright/mcp@latest"]
+```
 
 ### ccSwitch 配置
 
+[ccSwitch](https://github.com/farion1231/cc-switch) 使用标准 JSON 格式：
+
 ```json
 {
-  "command": "node",
-  "args": ["<PROJECT_ROOT>/dist/index.js", "--", "npx", "@playwright/mcp@latest"]
+  "command": "npx",
+  "args": ["-y", "mcp-safe-proxy", "--", "npx", "@playwright/mcp@latest"]
 }
 ```
+
+### 从源码构建（开发者）
+
+```bash
+git clone https://github.com/Huan-zhaojun/mcp-safe-proxy.git
+cd mcp-safe-proxy
+npm install
+npm run build
+```
+
+> 详见 [本地开发测试指南](docs/local-dev-testing.md)。
 
 ## CLI 选项
 

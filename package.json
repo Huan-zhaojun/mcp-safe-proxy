@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "build": "tsc",
+    "pretest": "npm run build",
+    "test": "node test/e2e-test.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -19,7 +21,16 @@
     "codex",
     "playwright"
   ],
+  "author": "Huan-zhaojun",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huan-zhaojun/mcp-safe-proxy.git"
+  },
+  "homepage": "https://github.com/Huan-zhaojun/mcp-safe-proxy#readme",
+  "bugs": {
+    "url": "https://github.com/Huan-zhaojun/mcp-safe-proxy/issues"
+  },
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0"

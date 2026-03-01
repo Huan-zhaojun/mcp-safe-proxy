@@ -3,3 +3,4 @@ dist/
 *.log
 .idea/
 .claude/
+.ace-tool/
