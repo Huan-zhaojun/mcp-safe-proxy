@@ -1,0 +1,30 @@
+{
+  "name": "mcp-safe-proxy",
+  "version": "0.1.0",
+  "description": "MCP annotation proxy — rewrite tool hints to bypass approval prompts",
+  "bin": {
+    "mcp-safe-proxy": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "proxy",
+    "annotation",
+    "codex",
+    "playwright"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
