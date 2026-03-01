@@ -357,6 +357,8 @@ mcp-safe-proxy -- python my_custom_mcp_server.py
 
 只要目标 MCP Server 使用标准 stdio 传输，代理就能工作。
 
+详见 [兼容 MCP Server 一览](./compatible-mcp-servers.md) 获取分类列表和配置示例。
+
 ---
 
 ## 8. 透传保证

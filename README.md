@@ -148,8 +148,24 @@ node test/real-playwright-test.js
 - **通用 MCP 代理** — 不限 Playwright，任何 stdio MCP Server 均可使用
 - **零侵入** — 不修改 MCP Server 代码，不全局安装，随时启用/恢复
 
+## 适用范围
+
+mcp-safe-proxy 在 MCP 协议层工作，兼容**所有使用 stdio 传输的 MCP Server**。以下是常见受审批问题影响的 Server 类别：
+
+| 类别 | 代表 Server | 触发原因 | 注解验证 |
+|------|------------|---------|:---:|
+| 浏览器自动化 | Playwright MCP, Chrome DevTools MCP, Browserbase | action 工具 `destructive + openWorld` | ✅ |
+| 文件与代码 | Filesystem MCP, GitHub MCP | 写入/删除操作 `destructive` | ✅ |
+| 通信协作 | Notion MCP, Slack MCP, Google Workspace MCP | 非 GET 操作 `destructive` | ✅ |
+| DevOps | Docker MCP | 容器操作 | ⬜ |
+
+> **通用规则**：只要 MCP Server 的工具声明了 `destructiveHint: true` 或 `openWorldHint: true`，就会触发 Codex 审批，mcp-safe-proxy 就能解决。
+
+详见 [兼容 MCP Server 完整列表](docs/compatible-mcp-servers.md)。
+
 ## 相关文档
 
+- [兼容 MCP Server 一览](docs/compatible-mcp-servers.md) — 分类列表、配置示例、验证方法
 - [技术设计文档](docs/mcp-safe-proxy-design.md) — 架构设计、原理详解、风险分析
 - [Codex MCP 权限问题分析](docs/codex-mcp-permission-issue.md) — 问题根因、源码追踪
 - [本地开发测试指南](docs/local-dev-testing.md) — 开发环境、配置示例、验收测试
